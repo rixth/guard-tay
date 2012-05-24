@@ -50,9 +50,10 @@ module Guard
     # We're using Tay's CLI helpers and they expect string optiopns with
     # dashes, rather than symbols and underscores. So munge!
     def munge_options(options)
+      keys_to_munge = [:build_directory, :tayfile]
       munged = {}
       options.keys.each do |key|
-        if key.is_a?(Symbol)
+        if keys_to_munge.include?(key)
           new_key = key.to_s.gsub(/_/, '-')
         end
         munged[new_key || key] = options[key]
