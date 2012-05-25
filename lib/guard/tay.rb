@@ -35,7 +35,7 @@ module Guard
 
     def build_extension
       begin
-        ::Tay::Builder.new(spec, base_dir, build_dir).build!
+        ::Tay::Builder.new(spec(true), base_dir, build_dir).build!
         UI.info "compiled #{spec.name} to #{build_dir}"
       rescue ::Tay::InvalidSpecification => e
         UI.error "invalid specification in #{tayfile_path.relative_path_from(Pathname.new(Dir.pwd))}: #{e}"
